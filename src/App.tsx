@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import { LoginForm } from './components/LoginForm';
 import { MainDashboard } from './components/MainDashboard';
@@ -13,9 +13,10 @@ import { useAuth } from './hooks/useAuth';
 import { useTabWarning } from './hooks/useTabWarning';
 import { courses } from './data/courses';
 
-function App() {
+const AppContent: React.FC = () => {
   const { user, login, logout, loading, getUsername } = useAuth();
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null);
+  const location = useLocation();
   useTabWarning();
 
   const handleCourseSelect = (courseId: string) => {
@@ -38,54 +39,58 @@ function App() {
     );
   }
 
+  // Function to render authenticated content based on current route
+  const renderAuthenticatedContent = () => {
+    if (selectedCourse) {
+      return (
+        <CourseDashboard 
+          course={selectedCourse} 
+          onBack={handleBackToDashboard} 
+        />
+      );
+    }
+
+    // Check current path to determine which component to show
+    if (location.pathname === '/ai-services') {
+      return <AIServices />;
+    }
+    
+    // Default to dashboard for /login and /dashboard routes
+    return (
+      <MainDashboard
+        username={getUsername() || 'User'}
+        onCourseSelect={handleCourseSelect}
+        onLogout={logout}
+      />
+    );
+  };
+
+  return (
+    <div className="relative">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={
+          user ? renderAuthenticatedContent() : <LoginForm onLogin={login} />
+        } />
+        <Route path="/dashboard" element={
+          user ? renderAuthenticatedContent() : <LoginForm onLogin={login} />
+        } />
+        <Route path="/ai-services" element={
+          user ? renderAuthenticatedContent() : <LoginForm onLogin={login} />
+        } />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+      <ChatSystem />
+    </div>
+  );
+};
+
+function App() {
   return (
     <Router>
-      <div className="relative">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={
-            user ? (
-              selectedCourse ? (
-                <CourseDashboard 
-                  course={selectedCourse} 
-                  onBack={handleBackToDashboard} 
-                />
-              ) : (
-                <MainDashboard
-                  username={getUsername() || 'User'}
-                  onCourseSelect={handleCourseSelect}
-                  onLogout={logout}
-                />
-              )
-            ) : (
-              <LoginForm onLogin={login} />
-            )
-          } />
-          <Route path="/dashboard" element={
-            user ? (
-              selectedCourse ? (
-                <CourseDashboard 
-                  course={selectedCourse} 
-                  onBack={handleBackToDashboard} 
-                />
-              ) : (
-                <MainDashboard
-                  username={getUsername() || 'User'}
-                  onCourseSelect={handleCourseSelect}
-                  onLogout={logout}
-                />
-              )
-            ) : (
-              <LoginForm onLogin={login} />
-            )
-          } />
-          <Route path="/ai-services" element={<AIServices />} />
-          <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsOfService />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-        <ChatSystem />
-      </div>
+      <AppContent />
     </Router>
   );
 }
