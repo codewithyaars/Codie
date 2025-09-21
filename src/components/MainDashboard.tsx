@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { CourseCard } from './CourseCard';
 import { courses } from '../data/courses';
 import { useProgress } from '../hooks/useProgress';
-import { LogOut, Code, Zap, Wrench } from 'lucide-react';
+import { LogOut, Code, Zap, Wrench, Home, Brain } from 'lucide-react';
 
 interface MainDashboardProps {
   username: string;
@@ -50,13 +51,29 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({
               Welcome back, {username}! Continue your learning journey.
             </p>
           </div>
-          <button
-            onClick={onLogout}
-            className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
-          >
-            <LogOut className="h-4 w-4" />
-            <span>Logout</span>
-          </button>
+          <div className="flex items-center space-x-4">
+            <Link
+              to="/"
+              className="flex items-center space-x-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <Home className="h-4 w-4" />
+              <span>Home</span>
+            </Link>
+            <Link
+              to="/ai-services"
+              className="flex items-center space-x-2 bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <Brain className="h-4 w-4" />
+              <span>AI Services</span>
+            </Link>
+            <button
+              onClick={onLogout}
+              className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition-colors"
+            >
+              <LogOut className="h-4 w-4" />
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
 
         {/* Stats Section */}
