@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { HomePage } from './components/HomePage';
+import HomePage from './components/HomePage';
 import { LoginForm } from './components/LoginForm';
 import { MainDashboard } from './components/MainDashboard';
 import { CourseDashboard } from './components/CourseDashboard';
