@@ -1,0 +1,125 @@
+
+
+CSS Only: From Basics to Mastery
+
+This course will guide you through the fundamental concepts of CSS, progressively building your skills to tackle complex layouts, animations, and responsive design, all without relying on any JavaScript.
+
+Module 1: The Foundations of Styling
+
+Main Topic: Understanding how CSS works and its core syntax.
+
+1.1 What is CSS?
+
+Introduction to Cascading Style Sheets.
+
+The purpose of CSS in web development.
+
+Separation of concerns (HTML for structure, CSS for style).
+
+1.2 CSS Syntax and Selectors
+
+Rulesets: selectors, properties, values.
+
+Types of selectors:
+
+Universal (*)
+
+Type (element) (p, h1)
+
+Class (.my-class)
+
+ID (#my-id)
+
+Attribute ([type="text"])
+
+Combinators (descendant, child, adjacent sibling, general sibling).
+
+Pseudo-classes (:hover, :nth-child, :focus, :active, etc.)
+
+Pseudo-elements (::before, ::after, ::first-letter, ::first-line).
+
+1.3 How to Include CSS
+
+Inline styles.
+
+Internal stylesheets (<style>).
+
+External stylesheets (<link rel="stylesheet">).
+
+The @import rule.
+
+1.4 The Cascade, Specificity, and Inheritance
+
+Understanding the "C" in CSS.
+
+Specificity calculation rules.
+
+The !important declaration (and why to use it sparingly).
+
+Inheritable vs. non-inheritable properties.
+
+1.5 Basic CSS Properties
+
+Text Styling: font-family, font-size, font-weight, color, text-align, text-decoration, line-height, letter-spacing.
+
+Box Model: width, height, padding, border, margin.
+
+Backgrounds: background-color, background-image, background-repeat, background-position, background-size, background shorthand.
+
+Lists: list-style-type, list-style-image, list-style-position.
+
+Links: Styling different link states.
+
+1.6 Developer Tools for CSS
+
+Inspecting elements.
+
+Modifying styles in real-time.
+
+Debugging CSS issues.
+
+Module 2: Layout and Positioning
+
+Main Topic: Arranging elements on the page for effective design.
+
+2.1 Display Property
+
+block, inline, inline-block.
+
+none (hiding elements).
+
+2.2 The Box Model in Depth
+
+box-sizing: content-box vs. border-box.
+
+Understanding collapsed margins.
+
+2.3 Floats and Clearfixes
+
+How floats work for multi-column layouts.
+
+The clear property.
+
+Common clearfix techniques.
+
+2.4 Positioning Schemes
+
+static, relative, absolute, fixed, sticky.
+
+Properties: top, right, bottom, left, z-index.
+
+Creating overlays and complex layering.
+
+2.5 Introduction to Flexbox
+
+The concept of a flex container and flex items.
+
+display: flex.
+
+Main axis and cross axis.
+
+Container properties: flex-direction, flex-wrap, justify-content, align-items, align-content.
+
+Item properties: order, flex-grow, flex-shrink, flex-basis, align-self.
+
+Building responsive navigation bars and card layouts.
