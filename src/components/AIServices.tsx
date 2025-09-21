@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Brain, Code, Zap, TrendingUp, MessageCircle, FileText, ArrowLeft, Send } from 'lucide-react';
+import { Brain, Code, Zap, TrendingUp, MessageCircle, FileText, ArrowLeft, Send, Home, BarChart3 } from 'lucide-react';
 import { geminiService } from '../utils/geminiApi';
 
 export const AIServices: React.FC = () => {
@@ -15,7 +15,6 @@ export const AIServices: React.FC = () => {
       title: 'AI Programming Tutor',
       description: 'Get instant help with programming concepts, debugging, and best practices',
       icon: <Brain className="h-8 w-8" />,
-      color: 'from-green-500 to-blue-600',
       placeholder: 'Ask me anything about programming...'
     },
     {
@@ -23,7 +22,6 @@ export const AIServices: React.FC = () => {
       title: 'Code Review Assistant',
       description: 'Get AI-powered feedback on your code quality, style, and optimization',
       icon: <Code className="h-8 w-8" />,
-      color: 'from-purple-500 to-pink-600',
       placeholder: 'Paste your code here for review...'
     },
     {
@@ -31,7 +29,6 @@ export const AIServices: React.FC = () => {
       title: 'Learning Progress Predictor',
       description: 'AI analyzes your learning patterns to predict success and suggest improvements',
       icon: <TrendingUp className="h-8 w-8" />,
-      color: 'from-blue-500 to-cyan-600',
       placeholder: 'Tell me about your current learning progress...'
     },
     {
@@ -39,7 +36,6 @@ export const AIServices: React.FC = () => {
       title: 'Concept Explainer',
       description: 'Break down complex programming concepts into easy-to-understand explanations',
       icon: <FileText className="h-8 w-8" />,
-      color: 'from-orange-500 to-red-600',
       placeholder: 'Which programming concept would you like me to explain?'
     }
   ];
@@ -81,22 +77,23 @@ export const AIServices: React.FC = () => {
       {/* Navigation */}
       <nav className="p-6 border-b border-gray-700/50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors">
-            <ArrowLeft className="h-5 w-5" />
-            <span>Back to Home</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link to="/" className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+              <Home className="h-5 w-5" />
+              <span>Home</span>
+            </Link>
+            <Link to="/dashboard" className="flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors">
+              <BarChart3 className="h-5 w-5" />
+              <span>Dashboard</span>
+            </Link>
+          </div>
           
           <div className="flex items-center space-x-2">
             <Brain className="h-8 w-8 text-green-400" />
             <span className="text-2xl font-bold">CODIEE AI Services</span>
           </div>
           
-          <Link 
-            to="/login" 
-            className="bg-gradient-to-r from-green-500 to-blue-600 px-6 py-2 rounded-lg hover:from-green-600 hover:to-blue-700 transition-all"
-          >
-            Dashboard
-          </Link>
+          <div className="w-32"></div>
         </div>
       </nav>
 
@@ -118,14 +115,14 @@ export const AIServices: React.FC = () => {
               <div
                 key={service.id}
                 onClick={() => setActiveService(service.id)}
-                className={`bg-gradient-to-br ${service.color} bg-opacity-20 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-8 cursor-pointer hover:scale-105 transition-all duration-300 group`}
+                className="bg-gray-800/40 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-8 cursor-pointer hover:bg-gray-700/50 hover:scale-105 transition-all duration-300 group"
               >
-                <div className="text-white mb-4 group-hover:scale-110 transition-transform">
+                <div className="text-blue-400 mb-4 group-hover:scale-110 transition-transform">
                   {service.icon}
                 </div>
                 <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
                 <p className="text-gray-300 mb-6">{service.description}</p>
-                <div className="flex items-center text-green-400 font-semibold">
+                <div className="flex items-center text-blue-400 font-semibold">
                   <span>Try Now</span>
                   <MessageCircle className="ml-2 h-5 w-5" />
                 </div>
@@ -169,7 +166,7 @@ export const AIServices: React.FC = () => {
                   <button
                     onClick={() => handleSubmit(activeService)}
                     disabled={!input.trim() || loading}
-                    className="mt-4 w-full bg-gradient-to-r from-green-500 to-blue-600 text-white py-3 rounded-lg font-semibold hover:from-green-600 hover:to-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                    className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
                   >
                     {loading ? (
                       <div className="flex items-center">
@@ -205,20 +202,20 @@ export const AIServices: React.FC = () => {
 
             {/* Service Features */}
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-700/50 p-6 text-center">
-                <Zap className="h-8 w-8 text-yellow-400 mx-auto mb-3" />
+              <div className="bg-gray-800/30 rounded-xl border border-gray-600/50 p-6 text-center">
+                <Zap className="h-8 w-8 text-blue-400 mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">Instant Results</h3>
                 <p className="text-sm text-gray-400">Get immediate AI-powered responses to your queries</p>
               </div>
               
-              <div className="bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-700/50 p-6 text-center">
-                <Brain className="h-8 w-8 text-purple-400 mx-auto mb-3" />
+              <div className="bg-gray-800/30 rounded-xl border border-gray-600/50 p-6 text-center">
+                <Brain className="h-8 w-8 text-green-400 mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">Smart Analysis</h3>
                 <p className="text-sm text-gray-400">Advanced AI understands context and provides relevant help</p>
               </div>
               
-              <div className="bg-gray-800/40 backdrop-blur-xl rounded-xl border border-gray-700/50 p-6 text-center">
-                <TrendingUp className="h-8 w-8 text-green-400 mx-auto mb-3" />
+              <div className="bg-gray-800/30 rounded-xl border border-gray-600/50 p-6 text-center">
+                <TrendingUp className="h-8 w-8 text-purple-400 mx-auto mb-3" />
                 <h3 className="font-semibold mb-2">Continuous Learning</h3>
                 <p className="text-sm text-gray-400">AI improves with each interaction to serve you better</p>
               </div>
@@ -235,7 +232,7 @@ export const AIServices: React.FC = () => {
             </p>
             <Link 
               to="/login"
-              className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-green-600 hover:to-blue-700 transition-all transform hover:scale-105 inline-flex items-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all transform hover:scale-105 inline-flex items-center"
             >
               Start Learning Now
               <ArrowLeft className="ml-2 h-5 w-5 rotate-180" />
