@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Course, Lesson } from '../types';
 import { useProgress } from '../hooks/useProgress';
 import { VideoPlayer } from './VideoPlayer';
+import { ProgressTracker } from './ProgressTracker';
 import { ChevronRight, ChevronDown, Play, CheckCircle, BookOpen } from 'lucide-react';
 
 interface CourseDashboardProps {
@@ -75,7 +76,7 @@ export const CourseDashboard: React.FC<CourseDashboardProps> = ({ course, onBack
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
             <div className="bg-gray-800/40 backdrop-blur-xl rounded-2xl border border-gray-700/50 p-4">
               <h2 className="text-xl font-bold text-white mb-4 flex items-center">
                 <BookOpen className="h-5 w-5 mr-2" />
@@ -140,6 +141,9 @@ export const CourseDashboard: React.FC<CourseDashboardProps> = ({ course, onBack
                 })}
               </div>
             </div>
+            
+            {/* Progress Tracker */}
+            <ProgressTracker courseId={course.id} />
           </div>
 
           {/* Main Content */}

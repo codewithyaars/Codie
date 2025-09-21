@@ -2,11 +2,16 @@ import { useEffect } from 'react';
 
 export const useTabWarning = () => {
   useEffect(() => {
+    const showAlert = () => {
+      alert('🚨 Focus on your learning! Tab switching won\'t build your career - consistent practice will!');
+    };
+
     const handleVisibilityChange = () => {
       if (document.hidden) {
-        document.title = '🚨 Idhar dekhle kya karega tab switch karke career nhi banana!';
+        document.title = '🚨 Focus on Learning - CODIEE';
+        showAlert();
       } else {
-        document.title = 'CodeRoadmap - Learn Programming';
+        document.title = 'CODIEE - Learn Programming';
       }
     };
 

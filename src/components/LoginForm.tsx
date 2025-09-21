@@ -73,10 +73,6 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onLogin }) => {
           </button>
         </form>
 
-        <div className="mt-6 text-center text-sm text-gray-400">
-          <p>Demo Credentials:</p>
-          <p>Shravani / svv@123 | Harsh / hug@123</p>
-        </div>
       </div>
     </div>
   );

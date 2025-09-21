@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HomePage } from './components/HomePage';
 import { LoginForm } from './components/LoginForm';
 import { MainDashboard } from './components/MainDashboard';
 import { CourseDashboard } from './components/CourseDashboard';
 import { ChatSystem } from './components/ChatSystem';
-import { Scene3D } from './components/Scene3D';
+import { PrivacyPolicy } from './components/PrivacyPolicy';
+import { TermsOfService } from './components/TermsOfService';
+import { Contact } from './components/Contact';
+import { AIServices } from './components/AIServices';
 import { useAuth } from './hooks/useAuth';
 import { useTabWarning } from './hooks/useTabWarning';
 import { courses } from './data/courses';
@@ -33,34 +38,55 @@ function App() {
     );
   }
 
-  if (!user) {
-    return (
-      <div className="relative">
-        <Scene3D />
-        <LoginForm onLogin={login} />
-      </div>
-    );
-  }
-
-  const username = getUsername();
-
   return (
-    <div className="relative">
-      <Scene3D />
-      {selectedCourse ? (
-        <CourseDashboard 
-          course={selectedCourse} 
-          onBack={handleBackToDashboard} 
-        />
-      ) : (
-        <MainDashboard
-          username={username || 'User'}
-          onCourseSelect={handleCourseSelect}
-          onLogout={logout}
-        />
-      )}
-      <ChatSystem />
-    </div>
+    <Router>
+      <div className="relative">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={
+            user ? (
+              selectedCourse ? (
+                <CourseDashboard 
+                  course={selectedCourse} 
+                  onBack={handleBackToDashboard} 
+                />
+              ) : (
+                <MainDashboard
+                  username={getUsername() || 'User'}
+                  onCourseSelect={handleCourseSelect}
+                  onLogout={logout}
+                />
+              )
+            ) : (
+              <LoginForm onLogin={login} />
+            )
+          } />
+          <Route path="/dashboard" element={
+            user ? (
+              selectedCourse ? (
+                <CourseDashboard 
+                  course={selectedCourse} 
+                  onBack={handleBackToDashboard} 
+                />
+              ) : (
+                <MainDashboard
+                  username={getUsername() || 'User'}
+                  onCourseSelect={handleCourseSelect}
+                  onLogout={logout}
+                />
+              )
+            ) : (
+              <LoginForm onLogin={login} />
+            )
+          } />
+          <Route path="/ai-services" element={<AIServices />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsOfService />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <ChatSystem />
+      </div>
+    </Router>
   );
 }
 

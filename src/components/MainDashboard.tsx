@@ -43,7 +43,7 @@ export const MainDashboard: React.FC<MainDashboardProps> = ({
           <div>
             <h1 className="text-4xl font-bold text-white mb-2 flex items-center">
               <Code className="h-10 w-10 mr-3 text-green-400" />
-              CodeRoadmap
+              CODIEE
             </h1>
             {/* Fixed: Using username directly instead of undefined user */}
             <p className="text-gray-400">
